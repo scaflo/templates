@@ -1,13 +1,4 @@
-"use client";
-import useAppSelector from "@/hooks/redux/useAppSelector";
-import { useEffect } from "react";
-
 const App = () => {
-  const {auth} =  useAppSelector()
-  
-  useEffect(()=>{
-    console.log(auth)
-  },[auth])
   return (
     <div className="flex flex-col min-h-screen bg-white text-gray-800 text-center">
       <div className="flex-grow flex flex-col p-3 mx-auto w-full max-w-4xl">
@@ -89,7 +80,7 @@ const App = () => {
           </div>
 
           <div className="mt-12 p-6 bg-gray-50 rounded-lg">
-            <h3 className="text-2xl font-bold mb-4">We&apos;d Love to Hear from You!</h3>
+            <h3 className="text-2xl font-bold mb-4">We'd Love to Hear from You!</h3>
             <p className="text-gray-600 mb-4">
               Thank you for using Scaflo. Your feedback is invaluable to us.
             </p>
