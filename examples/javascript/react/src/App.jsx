@@ -1,4 +1,3 @@
-
 const App = () => {
   return (
     <div className="flex flex-col min-h-screen bg-white text-gray-800 text-center">
@@ -25,11 +24,10 @@ const App = () => {
             alt="Profile"
             className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-white shadow-lg"
           />
-          <h1 className="text-4xl font-bold mb-3">
-            🚀 Welcome to Scaflo
-          </h1>
+          <h1 className="text-4xl font-bold mb-3">🚀 Welcome to Scaflo</h1>
           <p className="text-xl mb-10 text-gray-600">
-            Simplify your development workflow with our powerful scaffolding tool.
+            Simplify your development workflow with our powerful scaffolding
+            tool.
           </p>
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
@@ -81,7 +79,9 @@ const App = () => {
           </div>
 
           <div className="mt-12 p-6 bg-gray-50 rounded-lg">
-            <h3 className="text-2xl font-bold mb-4">We&apos;d Love to Hear from You!</h3>
+            <h3 className="text-2xl font-bold mb-4">
+              We&apos;d Love to Hear from You!
+            </h3>
             <p className="text-gray-600 mb-4">
               Thank you for using Scaflo. Your feedback is invaluable to us.
             </p>
@@ -99,8 +99,8 @@ const App = () => {
         <footer className="mt-auto py-6 text-gray-600">
           <p>
             Created with ❤️ by
-            <a 
-              href="https://github.com/swapnesh839" 
+            <a
+              href="https://github.com/swapnesh839"
               className="font-bold text-green-600 hover:underline ml-1"
               target="_blank"
               rel="noopener noreferrer"
