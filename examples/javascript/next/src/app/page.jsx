@@ -1,13 +1,8 @@
 "use client";
-import useAppSelector from "@/hooks/redux/useAppSelector";
+
 import { useEffect } from "react";
 
 const App = () => {
-  const {auth} =  useAppSelector()
-  
-  useEffect(()=>{
-    console.log(auth)
-  },[auth])
   return (
     <div className="flex flex-col min-h-screen bg-white text-gray-800 text-center">
       <div className="flex-grow flex flex-col p-3 mx-auto w-full max-w-4xl">
