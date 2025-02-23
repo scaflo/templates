@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@scaflo/scaflo": "^1.0.4",
     "@types/eslint__eslintrc": "^2.1.2",
     "@types/node": "^20",
     "@types/react": "^19",

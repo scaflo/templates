@@ -18,6 +18,7 @@
     "sirv": "^3.0.1"
   },
   "devDependencies": {
+    "@scaflo/scaflo": "^1.0.4",
     "@types/react": "^19.0.10",
     "@vitejs/plugin-react-swc": "^3.8.0",
     "cross-env": "^7.0.3",

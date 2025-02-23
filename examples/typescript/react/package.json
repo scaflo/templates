@@ -18,6 +18,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
+    "@scaflo/scaflo": "^1.0.4",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react-swc": "^3.5.0",

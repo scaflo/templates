@@ -18,6 +18,7 @@
     "sirv": "^3.0.1"
   },
   "devDependencies": {
+    "@scaflo/scaflo": "^1.0.4",
     "@types/express": "^5.0.0",
     "@types/node": "^22.13.4",
     "@types/react": "^19.0.10",
