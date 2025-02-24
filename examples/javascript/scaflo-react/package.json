@@ -1,0 +1,44 @@
+{
+  "name": "scaflo-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "license": "AGPL-version-3.0",
+  "private": false,
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": "",
+  "keywords": [],
+  "author": {
+    "name": "swapnesh panda",
+    "email": "business.swapnesh@gmail.com"
+  },
+  "contributors": [],
+  "scripts": {
+    "dev": "nodemon --watch src --exec \"node build.mjs & yarn start\"",
+    "build": "node build.mjs",
+    "start": "yarn serve public -p 3000 -s",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "chokidar": "^4.0.3",
+    "esbuild": "^0.25.0",
+    "esbuild-server": "^0.3.0",
+    "eslint": "^9.21.0",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.5.2",
+    "serve": "^14.2.4"
+  }
+}
