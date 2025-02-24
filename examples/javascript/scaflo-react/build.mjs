@@ -1,12 +1,15 @@
 import { build } from 'esbuild';
 import chokidar from 'chokidar';
+import { jsx } from 'react/jsx-runtime';
 
 const buildOptions = {
   entryPoints: ['src/index.jsx'],
   bundle: true,
   outfile: 'public/bundle.js',
-  sourcemap: true,
+  sourcemap: false,
   loader: { '.js': 'jsx' },
+  format: 'esm',
+  jsx:"automatic",
 };
 
 async function buildProject() {
