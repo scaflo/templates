@@ -153,14 +153,15 @@ async function buildProject() {
   console.log('✅ Build complete!');
   triggerReload(); // Notify browser to reload
 }
+if (process.env.NODE_ENV == "development") {
+  chokidar.watch('src').on('change', async () => {
+    console.log('🔄 Rebuilding...');
+    await buildProject();
+  });
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running at http://localhost:${PORT}`);
+  });
+}
 
-chokidar.watch('src').on('change', async () => {
-  console.log('🔄 Rebuilding...');
-  await buildProject();
-});
-
-app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
-});
 
 buildProject(); // Initial Build
