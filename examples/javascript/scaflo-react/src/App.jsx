@@ -1,4 +1,5 @@
-
+import "./globals.css";
+import "./output.css";
 const App = () => {
     return (
       <div className="flex flex-col min-h-screen bg-white text-gray-800 text-center">
