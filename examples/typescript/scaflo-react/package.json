@@ -1,0 +1,25 @@
+{
+  "name": "scaflo-react",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "main.tsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^19.0.0",
+    "chokidar": "^4.0.3",
+    "esbuild": "^0.25.0",
+    "esbuild-server": "^0.3.0",
+    "serve": "^14.2.4"
+  },
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "typescript": "^5.7.3"
+  }
+}
