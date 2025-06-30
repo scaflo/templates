@@ -4,14 +4,14 @@ import express from "express";
 import mongoSanitize from "express-mongo-sanitize";
 import path from "path";
 import { fileURLToPath } from "url";
-import envConfig from "./config/env.config.js";
 import { startServer } from "./config/template.config.js";
+import { responseMiddleware } from "./middlewares/response.middleware.js";
 import RootRouter from "./routes/routes.js";
 // import connectDB from "./config/db.config.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 export const app = express();
-startServer({ port: Number(envConfig.PORT), app });
+startServer({ app });
 // db connection
 // const initialize = () => {
 //  connectDB();
@@ -27,6 +27,7 @@ app.use(express.json());
 app.use(mongoSanitize());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
+app.use(responseMiddleware);
 app.use(RootRouter);
 app.get("/", (_, res) => {
     res.sendFile(path.join(__dirname, "../public/starter.html"));
