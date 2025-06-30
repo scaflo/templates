@@ -1,6 +1,5 @@
 import express from "express";
-declare const startServer: ({ port, app }: {
-    port: number;
+declare const startServer: ({ app }: {
     app: express.Express;
 }) => void;
 export { startServer };
