@@ -1,1 +1,0 @@
-{"version":3,"file":"aws.service.d.ts","sourceRoot":"","sources":["../../src/services/aws.service.ts"],"names":[],"mappings":"AAIA,eAAO,MAAM,UAAU,sCAIpB;IACD,MAAM,EAAE,MAAM,CAAC;IACf,QAAQ,EAAE,MAAM,CAAC;IACjB,UAAU,EAAE,MAAM,CAAC;CACpB,iEAeA,CAAC"}

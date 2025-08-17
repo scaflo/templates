@@ -1,6 +1,6 @@
-import express from "express";
-import { createServer } from "http";
+
 import os from "os";
+import http from "http"
 import envConfig from "./env.config.js";
 
 const getLocalIP = () => {
@@ -14,30 +14,35 @@ const getLocalIP = () => {
   }
   return "localhost";
 };
-
-
-const startServer = ({ app }: { app: express.Express }) => {
-  const server = createServer(app);
-
+const initializeServer = ({ server }: { server: http.Server }) => {
   server
     .listen(envConfig.PORT, () => {
       console.log(`→ Localhost: http://localhost:${envConfig.PORT}/`);
       try {
         const localIP = getLocalIP();
         console.log(`→ Local IP : http://${localIP}:${envConfig.PORT}/`);
-      } catch (error: any) {
-        console.log(error?.message);
+      } catch (error) {
+        console.log(error);
       }
     })
-    .on("error", (err: NodeJS.ErrnoException) => {
-      if (err.code === "EADDRINUSE") {
-        console.error(`⚠️ Server error: Port ${envConfig.PORT} is already in use.`);
-      } else {
-        console.error("❌ Server error:", err.message);
-
-        process.exit(1);
-      }
+    .on("error", (err) => {
+      console.log(err);
+      process.exit(1);
     });
+
+  process.on("SIGTERM", () => {
+    server.close(() => {
+      console.log("HTTP server closed.");
+      process.exit(0);
+    });
+  });
+
+  process.on("SIGINT", () => {
+    server.close(() => {
+      console.log("the server stopped with (Ctrl+C).");
+      process.exit(0);
+    });
+  });
 };
 
-export { startServer };
+export default initializeServer;

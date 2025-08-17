@@ -1,1 +1,0 @@
-{"version":3,"file":"trim.middleware.d.ts","sourceRoot":"","sources":["../../src/middlewares/trim.middleware.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,YAAY,EAAE,OAAO,EAAE,QAAQ,EAAE,MAAM,SAAS,CAAC;AAE1D,QAAA,MAAM,cAAc,QAAS,OAAO,OAAO,QAAQ,QAAQ,YAAY,SAStE,CAAC;AAEF,eAAe,cAAc,CAAC"}

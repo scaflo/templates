@@ -86,7 +86,7 @@ const App = () => {
               Thank you for using Scaflo. Your feedback is invaluable to us.
             </p>
             <a
-              href="https://github.com/swapnesh839/Scaflo/issues"
+              href="https://github.com/scaflo/Scaflo/issues"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block py-2 px-4 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition-colors duration-200"

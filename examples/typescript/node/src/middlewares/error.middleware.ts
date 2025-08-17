@@ -1,7 +1,6 @@
 import { ErrorRequestHandler, NextFunction, Request, Response } from "express";
-
-import envConfig from "../config/env.config.js";
-import { ValidationError } from "../utilities/appError.js";
+import { ValidationError } from "$/utilities/appError.js";
+import envConfig from "$/config/env.config.js";
 
 export const notFoundMiddleware = (req: Request, res: Response) => {
   console.warn(`⚠️ 404 - Route [${req.method}] ${req.originalUrl} not found`);
@@ -13,10 +12,10 @@ export const notFoundMiddleware = (req: Request, res: Response) => {
 };
 
 export const errorHandler: ErrorRequestHandler = (
-  err: ValidationError,
+  err: ValidationError ,
   req: Request,
   res: Response,
-  _next: NextFunction,
+  _next: NextFunction
 ): void => {
   const {
     statusCode = 500,
@@ -27,7 +26,7 @@ export const errorHandler: ErrorRequestHandler = (
   console.error(
     `[${errorCode}] ${message} - Method: ${req.method} - URL: ${req.originalUrl}\n${
       envConfig.NODE_ENV === "development" ? err.stack : ""
-    }`,
+    }`
   );
 
   if (err instanceof ValidationError) {
