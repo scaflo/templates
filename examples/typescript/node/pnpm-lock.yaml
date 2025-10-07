@@ -51,8 +51,8 @@ importers:
         specifier: ^2.0.2
         version: 2.0.2
       nodemailer:
-        specifier: ^6.10.0
-        version: 6.10.1
+        specifier: ^7.0.7
+        version: 7.0.7
       tsup:
         specifier: ^8.5.0
         version: 8.5.0(jiti@2.5.1)(typescript@5.9.2)
@@ -2403,8 +2403,8 @@ packages:
   node-cleanup@2.1.2:
     resolution: {integrity: sha512-qN8v/s2PAJwGUtr1/hYTpNKlD6Y9rc4p8KSmJXyGdYGZsDGKXrGThikLFP9OCHFeLeEpQzPwiAtdIvBLqm//Hw==}
 
-  nodemailer@6.10.1:
-    resolution: {integrity: sha512-Z+iLaBGVaSjbIzQ4pX6XV41HrooLsQ10ZWPUehGmuantvzWoDVBnmsdUcOIDM1t+yPor5pDhVlDESgOMEGxhHA==}
+  nodemailer@7.0.7:
+    resolution: {integrity: sha512-jGOaRznodf62TVzdyhKt/f1Q/c3kYynk8629sgJHpRzGZj01ezbgMMWJSAjHADcwTKxco3B68/R+KHJY2T5BaA==}
     engines: {node: '>=6.0.0'}
 
   object-assign@4.1.1:
@@ -5864,7 +5864,7 @@ snapshots:
 
   node-cleanup@2.1.2: {}
 
-  nodemailer@6.10.1: {}
+  nodemailer@7.0.7: {}
 
   object-assign@4.1.1: {}
 
