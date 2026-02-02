@@ -46,7 +46,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.10.0",
     "multer": "^2.0.2",
-    "nodemailer": "^6.10.0",
+    "nodemailer": "^7.0.7",
     "tsup": "^8.5.0",
     "zod": "^3.24.1"
   },
