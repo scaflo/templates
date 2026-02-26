@@ -1,4 +1,4 @@
-import { ValidationError } from "$/utilities/appError.js";
+import { ValidationError } from "$/utils/appError.js";
 import { NextFunction, Request, Response } from "express";
 import { ZodError, ZodSchema } from "zod";
 

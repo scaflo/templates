@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 import envConfig from "./env.config.js";
+// import { bootstrapAdmin } from "$/bootstrapAdmin.js";
 const connectDB = async () => {
   if (mongoose.connection.readyState === 1) {
     console.info("MongoDB is already connected.");
@@ -10,6 +11,8 @@ const connectDB = async () => {
     await mongoose.connect(envConfig.DB_URI);
     console.log("Connected to MongoDB");
     console.info("Connected to MongoDB");
+
+    // await bootstrapAdmin();
 
     mongoose.connection.on("disconnected", () => {
       console.log("Lost MongoDB connection");

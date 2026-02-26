@@ -1,7 +1,6 @@
-
-import os from "os";
-import http from "http"
 import envConfig from "./env.config.js";
+import os from "node:os";
+import http from "node:http";
 
 const getLocalIP = () => {
   const interfaces = os.networkInterfaces();

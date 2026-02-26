@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import bcrypt from "bcryptjs";
 import { UserModel } from "$/models/User.model.js";
-import authService from "$/services/auth.service.js";
+import { generateAccessToken } from "$/services/token.service.js";
 export const signUpController = async (
   req: Request,
   res: Response,
@@ -67,7 +67,7 @@ export const signInController = async (
       return;
     }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       res.status(400).json({ message: "Invalid password" });
       return;
@@ -76,7 +76,7 @@ export const signInController = async (
     const userObj = user.toObject();
     const { password: _, ...userWithoutPassword } = userObj;
 
-    const token = authService.generateToken(user._id.toString());
+    const token = generateAccessToken(user._id.toString());
 
     res.success({
       data: {

@@ -1,14 +1,13 @@
-import { PutObjectCommandOutput, S3Client } from "@aws-sdk/client-s3";
-import { Request } from "express";
-
+import { S3Client, PutObjectCommandOutput } from "@aws-sdk/client-s3";
 import envConfig from "./env.config.js";
+import { Request } from "express";
 export interface CustomAWSRequest extends Request {
   s3Result?: PutObjectCommandOutput | PutObjectCommandOutput[];
 }
 const s3 = new S3Client({
-  region: envConfig.AWS_REGION as string,
+  region: envConfig.AWS_REGION,
   credentials: {
-    accessKeyId: envConfig.AWS_ACCESS_KEY_ID as string,
+    accessKeyId: envConfig.AWS_ACCESS_KEY_ID,
     secretAccessKey: envConfig.AWS_SECRET_ACCESS_KEY,
   },
 });

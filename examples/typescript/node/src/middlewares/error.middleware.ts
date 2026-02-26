@@ -1,51 +1,76 @@
-import { ErrorRequestHandler, NextFunction, Request, Response } from "express";
-import { ValidationError } from "$/utilities/appError.js";
 import envConfig from "$/config/env.config.js";
+import { AppError, ValidationError } from "$/utils/appError.js";
+import { logger } from "$/utils/Logger.js";
+import { ErrorRequestHandler, Request, Response, NextFunction } from "express";
+import { ZodError } from "zod";
 
-export const notFoundMiddleware = (req: Request, res: Response) => {
-  console.warn(`⚠️ 404 - Route [${req.method}] ${req.originalUrl} not found`);
+// interface AppError extends Error {
+//   statusCode?: number;
+//   errorCode?: string;
+// }
+
+export const notFoundMiddleware = (req: Request, res: Response): void => {
+  logger.warn({
+    event: "route_not_found",
+    requestId: req.requestId,
+    method: req.method,
+    url: req.originalUrl,
+  });
 
   res.status(404).json({
     success: false,
-    message: `Route [${req.method}] ${req.originalUrl} not found`,
+    message: "Route not found",
+    requestId: req.requestId,
   });
 };
 
 export const errorHandler: ErrorRequestHandler = (
-  err: ValidationError ,
+  err: AppError,
   req: Request,
   res: Response,
-  _next: NextFunction
+  _next: NextFunction,
 ): void => {
-  const {
-    statusCode = 500,
-    errorCode = "UNKNOWN_ERROR",
-    message = "An unexpected error occurred",
-    validationMessages,
-  } = err;
-  console.error(
-    `[${errorCode}] ${message} - Method: ${req.method} - URL: ${req.originalUrl}\n${
-      envConfig.NODE_ENV === "development" ? err.stack : ""
-    }`
-  );
+  const statusCode = err.statusCode ?? 500;
+
+  // const validationMessages = err.validationMessages;
+  const message = err.message;
+
+  logger.error({
+    event: "application_error",
+    requestId: req.requestId,
+    message: err.message,
+    stack: err.stack,
+    method: req.method,
+    url: req.originalUrl,
+  });
+
+  if (err instanceof ZodError) {
+    res.badRequest({
+      statusCode: 400,
+      message: err.issues[0].message,
+      errors: err.issues.map((issue) => ({
+        path: issue.path.join("."), // ex: "email", "user.address.zip"
+        message: issue.message,
+      })),
+    });
+    return;
+  }
 
   if (err instanceof ValidationError) {
-    res.status(400).json({
-      success: false,
+    res.badRequest({
+      statusCode: 400,
       message,
-      errorCode: "VALIDATION_ERROR",
-      errors: validationMessages,
     });
     return;
   }
 
   res.status(statusCode).json({
     success: false,
-    message,
-    errorCode,
-    error:
-      envConfig.NODE_ENV === "development" ? (err as Error).stack : undefined,
+    message:
+      envConfig.NODE_ENV === "production"
+        ? "Internal Server Error"
+        : err.message,
+    errorCode: err.errorCode ?? "UNKNOWN_ERROR",
+    requestId: req.requestId,
   });
-
-  return;
 };

@@ -16,6 +16,7 @@ type ErrorKey =
   | "JWT_EXPIRED_ERROR"
   | "JWT_INVALID_ERROR"
   | "DUPLICATE_FIELD_ERROR"
+  | "CORS_ERROR"
   | "BAD_REQUEST_ERROR";
 
 const ERROR_TYPES: Record<ErrorKey, ErrorType> = {
@@ -84,6 +85,12 @@ const ERROR_TYPES: Record<ErrorKey, ErrorType> = {
     statusCode: 400,
     errorType: "BadRequestError",
     errorCode: "BAD_REQUEST_ERROR",
+  },
+  CORS_ERROR: {
+    defaultMessage: "Not allowed by CORS",
+    statusCode: 403,
+    errorType: "CorsError",
+    errorCode: "CORS_ERROR",
   },
 };
 

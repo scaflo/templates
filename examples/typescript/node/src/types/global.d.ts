@@ -1,5 +1,4 @@
 import { IUser } from "$/models/User.model.ts";
-import { UploadApiResponse } from "cloudinary";
 
 declare global {
   namespace Express {
@@ -14,28 +13,33 @@ declare global {
         statusCode?: number;
       }) => void;
 
-      created: ({
-        data,
-        message,
-        statusCode,
-      }: {
-        data: object;
-        message?: string;
-        statusCode?: number;
-      }) => void;
+      created: ({ data, message }: { data?: object; message?: string }) => void;
 
+      //  errors: err.issues.map((issue) => ({
+      // path: issue.path.join("."), // ex: "email", "user.address.zip"
+      // message: issue.message,
+      // })),
       badRequest: ({
         message,
         statusCode,
+        errors,
       }: {
         message?: string;
         statusCode?: number;
+        errors?: {
+          path: string;
+          message: string;
+        }[];
       }) => void;
+
+      unauthorized: ({ message }: { message?: string }) => void;
+
+      forbidden: ({ message }: { message?: string }) => void;
     }
 
     interface Request {
       user?: IUser;
-      cloudinaryResult?: UploadApiResponse | UploadApiResponse[];
+      requestId: string;
       // user?: {
       //   name: string;
       //   email: string;

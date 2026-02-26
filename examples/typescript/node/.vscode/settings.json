@@ -16,7 +16,7 @@
     "strings": true
   },
   "editor.suggest.snippetsPreventQuickSuggestions": false,
-  "editor.hover.enabled": true,
+  "editor.hover.enabled": "on",
   "[typescript]": {
     "editor.defaultFormatter": "vscode.typescript-language-features"
   }

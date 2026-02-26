@@ -37,3 +37,4 @@ out
 next-env.d.ts
 yarn.lock
 dist
+logs
