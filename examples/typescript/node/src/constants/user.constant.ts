@@ -1,18 +1,15 @@
-// export interface userType {
-//   ADMIN: string;
-//   SUPER_ADMIN: string;
-// }
+export enum USER_STATUS {
+  ACTIVE = "ACTIVE",
+  SUSPENDED = "SUSPENDED",
+}
 
-// export const USER_TYPE: userType = {
-//   ADMIN: "ADMIN",
-//   SUPER_ADMIN: "SUPER_ADMIN",
-// };
+export enum USER_ROLE {
+  SUPER_ADMIN = "SUPER_ADMIN",
+  "USER" = "USER",
+}
 
-// export interface userStatus {
-//   ACTIVE: "ACTIVE";
-//   SUSPENDED: "SUSPENDED";
-// }
-// export const USER_STATUS: userStatus = {
-//   ACTIVE: "ACTIVE",
-//   SUSPENDED: "SUSPENDED",
-// };
+export interface IRefreshToken {
+  tokenHash: string;
+  createdAt: Date;
+  expiresAt: Date;
+}

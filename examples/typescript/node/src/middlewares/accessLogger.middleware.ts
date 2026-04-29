@@ -1,6 +1,6 @@
 import morgan from "morgan";
-import { Request, Response } from "express";
-import { logger } from "$/utils/Logger.js";
+import type { Request, Response } from "express";
+import { logger } from "@/utils/Logger.js";
 
 interface AccessLogPayload {
   requestId: string;
@@ -16,8 +16,8 @@ export const accessLoggerMiddleware = morgan(
   (tokens, req: Request, res: Response): string => {
     const payload: AccessLogPayload = {
       requestId: req.requestId,
-      method: tokens.method(req, res) ?? "",
-      url: tokens.url(req, res) ?? "",
+      method: tokens?.method(req, res) ?? "",
+      url: tokens?.url(req, res) ?? "",
       status: Number(tokens.status(req, res)),
       responseTimeMs: Number(tokens["response-time"](req, res)),
       ip: tokens["remote-addr"](req, res) ?? "",

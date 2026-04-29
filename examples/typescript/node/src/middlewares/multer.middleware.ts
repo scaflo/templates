@@ -1,25 +1,16 @@
-// import { uploadImage } from "$/services/cloudnary.service.js";
-// import { NextFunction, Request, Response } from "express";
-// import multer from "multer";
-// const storage = multer.memoryStorage();
-// export const upload = multer({
-//   storage,
-//   limits: {
-//     fileSize: 5 * 1024 * 1024,
-//   },
-//   //   fileFilter: (_req, file, cb) => {
-//   //     if (file.mimetype.startsWith("image/")) {
-//   //       cb(null, true);
-//   //     } else {
-//   //       cb(new Error("Only images are allowed"));
-//   //     }
-//   //   },
-// });
+import multer from "multer";
+const storage = multer.memoryStorage();
+export const upload = multer({
+  storage,
+  limits: {
+    fileSize: 10 * 1024 * 1024,
+  },
+});
 
 // export const uploadMultipleToCloudinary = (
 //   req: Request,
 //   res: Response,
-//   next: NextFunction
+//   next: NextFunction,
 // ): void => {
 //   upload.array("files", 10)(req, res, async (err) => {
 //     if (err) {
@@ -39,7 +30,7 @@
 //     }
 //     try {
 //       const uploadPromises = (req.files as Express.Multer.File[]).map((file) =>
-//         uploadImage(file.buffer)
+//         uploadImage(file.buffer),
 //       );
 //       const results = await Promise.all(uploadPromises);
 //       req.cloudinaryResult = results;
@@ -57,7 +48,7 @@
 // export const uploadSingleToCloudinary = (
 //   req: Request,
 //   res: Response,
-//   next: NextFunction
+//   next: NextFunction,
 // ): void => {
 //   upload.single("file")(req, res, async (err) => {
 //     if (err) {

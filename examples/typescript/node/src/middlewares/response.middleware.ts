@@ -1,14 +1,16 @@
-import { NextFunction, Request, Response } from "express";
+import type { NextFunction, Request, Response } from "express";
 
-type SuccessParams = {
+export type SuccessParams = {
   data: object;
   message?: string;
   statusCode?: number;
 };
 
-type ErrorParams = {
+export type ErrorParams = {
   message?: string;
   statusCode?: number;
+  errorText?: string;
+  errors?: object | undefined
 };
 
 // 200 OK
@@ -28,7 +30,7 @@ export const successResponse = (
 };
 
 // 201 Created
-export const createdResponse = (
+export const created = (
   res: Response,
   {
     data = {},
@@ -42,11 +44,16 @@ export const createdResponse = (
     data,
   });
 };
+export const noContent = (
+  res: Response
+) => {
+  return res.status(204)
+};
 
 // 400 Bad Request
 export const badRequest = (
   res: Response,
-  params: ErrorParams & { errors?: { path: string; message: string }[] },
+  params: ErrorParams,
 ) => {
   const { message = "Bad Request", statusCode = 400, errors } = params;
 
@@ -60,34 +67,53 @@ export const badRequest = (
 // here we will take message
 export const unauthorized = (
   res: Response,
-  { message = "Unauthorized" }: ErrorParams,
+  { message = "Unauthorized", errorText }: ErrorParams,
 ) => {
   return res.status(401).json({
     success: false,
     message,
+    errorText
+  });
+};
+export const notFound = (
+  res: Response,
+  { message = "Could not find resource", errorText }: ErrorParams,
+) => {
+  return res.status(401).json({
+    success: false,
+    message,
+    errorText
   });
 };
 
 export const forbidden = (
   res: Response,
-  { message = "Forbidden" }: ErrorParams,
+  { message = "Forbidden", errorText }: ErrorParams,
 ) => {
   return res.status(403).json({
+    success: false,
     message,
+    errorText
   });
 };
 
 const responseHandler = (_req: Request, res: Response, next: NextFunction) => {
-  res.success = ({ data = {}, message = "Operation Successful", statusCode }) =>
+  res.success = ({ data = {}, message = "Operation Successful", statusCode = 200 }) =>
     successResponse(res, { data, message, statusCode });
 
   res.created = ({ data = {}, message = "Resource Created Successfully" }) =>
-    createdResponse(res, { data, message });
+    created(res, { data, message });
+
+  res.noContent = () =>
+    noContent(res);
 
   res.unauthorized = ({ message = "Unauthorized" }) =>
     unauthorized(res, { message, statusCode: 401 });
   res.forbidden = ({ message = "Forbidden" }) =>
     forbidden(res, { message, statusCode: 403 });
+
+  res.notFound = ({ message = "Could not find resource" }) =>
+    notFound(res, { message, statusCode: 404 });
 
   res.badRequest = ({ message = "Bad Request", statusCode = 400, errors }) =>
     badRequest(res, { message, statusCode, errors });

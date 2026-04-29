@@ -1,23 +1,31 @@
 {
-  "typescript.preferences.importModuleSpecifier": "non-relative",
-  "javascript.preferences.importModuleSpecifier": "non-relative",
-  "typescript.preferences.importModuleSpecifierEnding": "js",
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
-  },
-  "eslint.validate": ["javascript", "typescript"],
-  "editor.codeLens": true,
-  "editor.errorSquiggles": "enabled",
-  "editor.quickSuggestions": {
-    "other": true,
-    "comments": false,
-    "strings": true
-  },
-  "editor.suggest.snippetsPreventQuickSuggestions": false,
-  "editor.hover.enabled": "on",
-  "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  }
+    "js/ts.preferences.importModuleSpecifier": "non-relative",
+    "editor.errorSquiggles": "enabled",
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": true
+    },
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.hover.enabled": "on",
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "json.schemas": [
+        {
+            "url": "https://cdn.jsdelivr.net/npm/tsup/schema.json",
+            "fileMatch": [
+                "package.json",
+                "tsup.config.json"
+            ]
+        }
+    ],
+    "eslint.useFlatConfig": true,
+    "eslint.validate": [
+        "javascript",
+        "typescript"
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "always"
+    }
 }

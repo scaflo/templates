@@ -13,6 +13,7 @@ const connectDB = async () => {
     console.info("Connected to MongoDB");
 
     // await bootstrapAdmin();
+    // await migrateLegacyStoreOnlineSettings();
 
     mongoose.connection.on("disconnected", () => {
       console.log("Lost MongoDB connection");

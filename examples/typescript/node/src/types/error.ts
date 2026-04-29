@@ -94,4 +94,4 @@ const ERROR_TYPES: Record<ErrorKey, ErrorType> = {
   },
 };
 
-export { ERROR_TYPES, ErrorKey };
+export { ERROR_TYPES, type ErrorType, type ErrorKey };

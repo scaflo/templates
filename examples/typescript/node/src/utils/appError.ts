@@ -1,4 +1,4 @@
-import { ERROR_TYPES, ErrorKey } from "$/types/error.js";
+import  { ERROR_TYPES,type  ErrorKey } from "@/types/error.js";
 
 class AppError extends Error {
   statusCode: number;

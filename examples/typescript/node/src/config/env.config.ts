@@ -31,5 +31,12 @@ const envConfig = {
   LOG_FILE_VALIDITY: process.env.LOG_FILE_VALIDITY || "1d",
 
   ENCRYPTION_KEY: process.env.ENCRYPTION_KEY || "",
+
+  // DELIVERY
+  DELIVERY_API_TOKEN: process.env.DELIVERY_API_TOKEN!,
+
+
+  // GOOGLE_CLIENT_ID
+  GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID!,
 };
 export default envConfig;

@@ -1,8 +1,11 @@
-import { IUser } from "$/models/User.model.ts";
+import type { TCustomer } from "$/models/CustomerModel/Customer.model.js";
+import type { TUser } from "$/models/UserModel/User.model.js";
+
 
 declare global {
   namespace Express {
     interface Response {
+      
       success: ({
         data,
         message,
@@ -14,11 +17,8 @@ declare global {
       }) => void;
 
       created: ({ data, message }: { data?: object; message?: string }) => void;
+      noContent: () => void;
 
-      //  errors: err.issues.map((issue) => ({
-      // path: issue.path.join("."), // ex: "email", "user.address.zip"
-      // message: issue.message,
-      // })),
       badRequest: ({
         message,
         statusCode,
@@ -32,19 +32,16 @@ declare global {
         }[];
       }) => void;
 
-      unauthorized: ({ message }: { message?: string }) => void;
+      unauthorized: ({ message, errorText }: { message?: string, errorText ?: string}) => void;
+      notFound: ({ message, errorText }: { message?: string, errorText ?: string}) => void;
 
-      forbidden: ({ message }: { message?: string }) => void;
+      forbidden: ({ message, errorText }: { message?: string , errorText ?: string }) => void;
     }
 
     interface Request {
-      user?: IUser;
+      user?: TUser;
+      customer?: TCustomer;
       requestId: string;
-      // user?: {
-      //   name: string;
-      //   email: string;
-      //   userType: string;
-      // };
     }
   }
 }

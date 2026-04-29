@@ -1,6 +1,6 @@
-import { S3Client, PutObjectCommandOutput } from "@aws-sdk/client-s3";
+import { S3Client, type PutObjectCommandOutput } from "@aws-sdk/client-s3";
 import envConfig from "./env.config.js";
-import { Request } from "express";
+import type { Request } from "express";
 export interface CustomAWSRequest extends Request {
   s3Result?: PutObjectCommandOutput | PutObjectCommandOutput[];
 }

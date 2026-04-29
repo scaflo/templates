@@ -1,8 +1,8 @@
-import envConfig from "$/config/env.config.js";
-import jwt, { JwtPayload } from "jsonwebtoken";
+import envConfig from "@/config/env.config.js";
+import jwt, {type JwtPayload } from "jsonwebtoken";
 import crypto from "node:crypto";
 
-// import { BadRequestError, JwtExpiredError } from "$/utils/appError.js";
+// import { BadRequestError, JwtExpiredError } from "@/utils/appError.js";
 
 const ACCESS_TOKEN_TTL = "1d";
 const REFRESH_TOKEN_TTL = "15d";
@@ -55,16 +55,17 @@ export const verifyToken = ({
   }
 };
 
-export function getRefreshCookieName(orgId: string) {
-  return `refreshToken-${orgId}`;
+
+export function getRefreshCookieName({ pannel = "customer" }: { pannel?: string }) {
+  return `refreshToken-${pannel && pannel}`;
 }
 
 
-// import envConfig from "$/config/env.config.js";
+// import envConfig from "@/config/env.config.js";
 // import jwt, { JwtPayload } from "jsonwebtoken";
 // import crypto from "node:crypto";
 
-// // import { BadRequestError, JwtExpiredError } from "$/utils/appError.js";
+// // import { BadRequestError, JwtExpiredError } from "@/utils/appError.js";
 
 // const ACCESS_TOKEN_TTL = "15m";
 // const REFRESH_TOKEN_TTL = "7d";

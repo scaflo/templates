@@ -3,7 +3,7 @@ import envConfig from "./env.config.js";
 
 const transporter = nodemailer.createTransport({
   host: envConfig.SMTP_HOST,
-  service: "gmail",
+  // service: "gmail",
   port: 465,
   secure: true,
   auth: {

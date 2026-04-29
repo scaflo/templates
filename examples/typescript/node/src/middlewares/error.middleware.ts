@@ -1,7 +1,8 @@
-import envConfig from "$/config/env.config.js";
-import { AppError, ValidationError } from "$/utils/appError.js";
-import { logger } from "$/utils/Logger.js";
-import { ErrorRequestHandler, Request, Response, NextFunction } from "express";
+import envConfig from "@/config/env.config.js";
+import { ValidationError, type AppError } from "@/utils/appError.js";
+// import { AppError, ValidationError } from "@/utils/appError.js";
+import { logger } from "@/utils/Logger.js";
+import type{ ErrorRequestHandler, Request, Response, NextFunction } from "express";
 import { ZodError } from "zod";
 
 // interface AppError extends Error {
@@ -47,7 +48,7 @@ export const errorHandler: ErrorRequestHandler = (
   if (err instanceof ZodError) {
     res.badRequest({
       statusCode: 400,
-      message: err.issues[0].message,
+      message: err?.issues[0]?.message ?? "Bad Request",
       errors: err.issues.map((issue) => ({
         path: issue.path.join("."), // ex: "email", "user.address.zip"
         message: issue.message,
