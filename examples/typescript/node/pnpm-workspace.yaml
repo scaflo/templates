@@ -1,0 +1,2 @@
+overrides:
+  scaflo-node-config: link:../../../../../../AppData/Local/pnpm/global/5/node_modules/scaflo-node-config

@@ -1,14 +1,14 @@
-import { Request, Response, NextFunction } from "express";
+import type { Request, Response, NextFunction } from "express";
 import bcrypt from "bcryptjs";
-import { UserModel } from "$/models/User.model.js";
-import { generateAccessToken } from "$/services/token.service.js";
+import { generateAccessToken } from "@/services/token.service.js";
+import { UserModel } from "@/models/UserModel/User.model.js";
 export const signUpController = async (
   req: Request,
   res: Response,
   next: NextFunction
 ): Promise<void> => {
   try {
-    const { name, phone, email, password, userType, adminType, otp } = req.body;
+    const { name, phone, email, password,otp } = req.body;
 
     if (!otp) {
       res.status(400).json({ message: "OTP is required" });
@@ -19,7 +19,7 @@ export const signUpController = async (
       res.status(400).json({ message: "OTP must be a 6-digit number" });
       return;
     }
-    const existingUser = await UserModel.findOne({ email, userType }).lean();
+    const existingUser = await UserModel.findOne({ email }).lean();
     if (existingUser) {
       res.status(400).json({ message: "User already exists" });
       return;
@@ -32,8 +32,6 @@ export const signUpController = async (
       phone,
       email,
       password: hashedPassword,
-      userType,
-      adminType,
     });
     // await SubscriptionModel.create({
     //   createdBy: newUser._id,

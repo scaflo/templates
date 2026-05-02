@@ -9,15 +9,17 @@ import {
 import path, { dirname } from "node:path";
 
 
-import connectDB from "@/config/db.config.js";
-import initializeServer from "@/config/server.config.js";
+
+
 // import router from "@/routes/routes.js";
-import  { initSocket } from "@/socket.js";
+import { initSocket } from "@/socket.js";
 import { applyCores } from "./config/cors.config.js";
 import { accessLoggerMiddleware } from "@/middlewares/accessLogger.middleware.js";
 import { fileURLToPath } from "node:url";
 // import { connectRedis } from "@/config/redis.config.js";
 import responseHandler from "@/middlewares/response.middleware.js";
+import envConfig from "@/config/env.config.js";
+import { connectDB, initializeServer } from "@scaflo/node-config";
 
 const app = express();
 
@@ -39,11 +41,11 @@ app.use(express.urlencoded({ extended: true }));
 
 applyCores({ app });
 const initialize = () => {
-  connectDB();
+  connectDB({ DB_URI: envConfig.DB_URI });
 };
 initialize();
 
-initializeServer({ server });
+initializeServer({ server, PORT: Number(envConfig.PORT) });
 initSocket(server);
 // connectRedis()
 

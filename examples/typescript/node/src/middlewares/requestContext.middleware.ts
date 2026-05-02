@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import type { Request, Response, NextFunction } from "express";
 import { v4 as uuid } from "uuid";
 
 export const requestContextMiddleware = (
